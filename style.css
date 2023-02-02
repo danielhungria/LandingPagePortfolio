@@ -5,6 +5,7 @@ box-sizing: border-box;
 }
 html{
     font-size: 10px;
+    scroll-behavior: smooth;
 }
 a{
     text-decoration: none;
@@ -47,6 +48,7 @@ a{
 #header .header{
     min-height: 8vh;
     background-color: rgb(31, 30, 30, 0.24);
+    transition: .3s ease background-color;
 }
 #header h1{
     font-size: 2rem;
@@ -67,7 +69,7 @@ a{
     background-color: rgb(31, 30, 30);
     width: 100vw;
     height: 100vh;
-    left: 0;
+    left: 100%;
     top: 0;
     display: flex;
     flex-direction: column;
@@ -75,6 +77,11 @@ a{
     align-items: center;
     z-index: 1;
     overflow-x: hidden;
+    transition: .5s ease left;
+}
+#header .nav-list ul.active{
+    left: 0;
+
 }
 #header .nav-list ul a{
     font-size: 2.5rem;
@@ -106,10 +113,10 @@ a{
     color: crimson;
 }
 #header .hamburger{
-    height: 60px;
-    width: 60px;
+    height: 40px;
+    width: 40px;
     display: inline-block;
-    border: 3px solid white;
+    border: 2px solid white;
     position: relative;
     z-index: 100;
     border-radius: 50%;
@@ -117,10 +124,21 @@ a{
     justify-content: center;
     display: flex;
     cursor: pointer;
+    transform: scale(.8);
+    margin-right: 8px;
+}
+#header .hamburger::after{
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    border: 2px solid white;
+    animation: hamburger_pulse 1s ease infinite;
 }
 #header .hamburger .bar{
     height: 2px;
-    width: 30px;
+    width: 20px;
     position: relative;
     background-color: white;
     z-index: -1;
@@ -141,6 +159,12 @@ a{
 }
 #header .hamburger .bar::before{
     bottom: 8px;
+}
+#header .hamburger.active .bar::after{
+    top: 0;    
+}
+#header .hamburger.active .bar::before{
+    bottom: 0;    
 }
 
 /* End Header Section  */
@@ -251,6 +275,16 @@ a{
 
 
 /* Keyframes  */
+@keyframes hamburger_pulse{
+    0%{
+        opacity: 1;
+        transform: scale(1);
+    }
+    100%{
+        opacity: 0;
+        transform: scale(1.4);
+    }
+}
 @keyframes text_reveal_box{
     50%{
         width: 100%;
@@ -276,6 +310,29 @@ a{
 	h1.section-title {
 		font-size: 6rem;
 	}
+/* Header */
+#header .hamburger{
+    display: none;
+}
+#header .nav-list ul{
+    position: initial;
+    display: block;
+    height: auto;
+    width: fit-content;
+    background-color: transparent;
+}
+#header .nav-list ul li{
+    display: inline-block;
+}
+#header .nav-list ul li a{
+    font-size: 1.8rem;
+}
+#header .nav-list ul li a::after{
+    display: none;
+}
+/* End Header */
+
+
 
 /* Hero */
 	#hero h1 {
