@@ -1,2 +1,2 @@
-# LandingPagePortfolio
+# Portfolio
 https://danielhungria.github.io/LandingPagePortfolio/
